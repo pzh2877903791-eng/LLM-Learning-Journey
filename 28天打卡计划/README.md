@@ -8,7 +8,7 @@
 
 | 周 | 天 | 任务                                   | 状态 | 验证标准                 | 提交记录 |
 |----|----|----------------------------------------|------|--------------------------|----------|
-| W1 | 1  | 装好 WSL2 或 Git Bash，学会 cd/ls/mkdir/rm |  ✅   | 截图 `pwd && ls -la`     |     2025.12.2     |
+| W1 | 1  | 装好 WSL2 或 Git Bash，学会 cd/ls/mkdir/rm |  ✅   | 截图 `pwd && ls -la`     |     2025.12.1     |
 | W1 | 2  | Python 虚拟环境 + pip + numpy/pandas   | ☐    | 跑通 pandas 小脚本       |          |
 | W1 | 3  | Git 基础（clone/add/commit/push）      | ☐    | 今日代码 push 到本仓库   |          |
 | W1 | 4-7| 每天刷 5 道 LeetCode 简单题            | ☐    | 周日完成 20 道           |          |
@@ -41,7 +41,7 @@ Made with Grok (xAI)
 ### **W1 基础夯实**
 | 天 | 任务 | 状态 | 验证标准 | 提交记录 |
 |----|------|------|----------|----------|
-| 1 | 装好 Git Bash，学会 cd/ls/mkdir/rm | ☐ | 截图 `pwd && ls -la` | |
+| 1 | 装好 Git Bash，学会 cd/ls/mkdir/rm | ✅ | 截图 `pwd && ls -la` |2025.12.1 |
 | 2 | Python 虚拟环境 + pip + numpy | ☐ | 跑通 numpy 小脚本 | |
 | 3 | Git 基础（clone/add/commit/push - **HTTPS优先**） | ☐ | 今日代码 push 到本仓库 | |
 | 4 | PyTorch 张量操作基础 | ☐ | 完成张量运算练习 | |
