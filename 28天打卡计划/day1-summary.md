@@ -124,7 +124,7 @@ rm -i file.txt     # 删除前询问
 ls before deleting # 先查看再删除
 📸 学习证明截图
 截图1: 基础命令验证
-<img width="1138" height="394" alt="PixPin_2025-12-02_11-05-49" src="https://github.com/user-attachments/assets/8819dcd1-436b-453a-932c-910fa0b83029" />
+<img width="1138" height="394" alt="day1-screenshot png" src="https://github.com/user-attachments/assets/9da22533-440f-45f0-a06c-803505a76d9b" />
 💡 实用技巧
 1. Tab 键自动补全
 bash
@@ -205,3 +205,11 @@ Day 2：Python 虚拟环境配置
 创建虚拟环境
 
 安装 numpy 并进行基础练习
+
+📌 提交要求
+
+保存本文件为 day1-summary.md
+
+将命令输出截图保存为 day1-screenshot.png
+
+提交到 Git 仓库
