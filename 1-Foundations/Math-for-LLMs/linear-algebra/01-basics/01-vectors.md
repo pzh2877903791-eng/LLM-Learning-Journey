@@ -221,18 +221,201 @@ Paris - France + Germany ≈ Berlin
 ## 📝 练习与思考
 ### 练习题
 * 计算向量 [5, -12] 的模长
+```python
+import numpy as np
 
+def vectors_magnitude(v):
+    return np.sqrt(np.sum(v**2))
+
+v = np.array([5,-12])
+print(vectors_magnitude(v))
+```
 * 如果 v = [2, 3], w = [-1, 4]，计算 v + w 和 3v - 2w
+```python
+import numpy as np
 
+def vectors_addition(v,w):
+    return v + w
+
+def linear_combination(a, v, b, w):
+    return a * v + b * w
+
+v = np.array([2,3])
+w = np.array([-1,4])
+
+print(vectors_addition(v,w))
+print(linear_combination(3,v,(-2),w))
+```
 * 画出向量 [1, 2] 和 [-2, 1]，计算它们的和并画图验证
+```python
+import numpy as np
+import matplotlib.pyplot as plt
 
+# 设置中文字体（如果需要）
+plt.rcParams['font.sans-serif'] = ['SimHei', 'Microsoft YaHei', 'DejaVu Sans']
+plt.rcParams['axes.unicode_minus'] = False
+
+# 定义向量
+v = np.array([1, 2])    # 向量 v
+w = np.array([-2, 1])   # 向量 w
+u = v + w               # 向量和 u = v + w = [-1, 3]
+
+print("=== 向量计算 ===")
+print(f"向量 v = {v}")
+print(f"向量 w = {w}")
+print(f"v + w = {v} + {w} = {u}")
+
+# 创建图形
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+
+# ========== 图1：分别绘制 v 和 w ==========
+ax1.set_title('向量 v 和 w', fontsize=14, pad=20)
+
+# 绘制向量 v（红色）
+ax1.quiver(0, 0, v[0], v[1],
+           angles='xy', scale_units='xy', scale=1,
+           color='red', width=0.01,
+           label=f'v = {v.tolist()}', alpha=0.8)
+
+# 绘制向量 w（蓝色）
+ax1.quiver(0, 0, w[0], w[1],
+           angles='xy', scale_units='xy', scale=1,
+           color='blue', width=0.01,
+           label=f'w = {w.tolist()}', alpha=0.8)
+
+# 标记终点
+ax1.scatter(v[0], v[1], color='red', s=80, zorder=5)
+ax1.scatter(w[0], w[1], color='blue', s=80, zorder=5)
+ax1.text(v[0]+0.1, v[1]+0.1, 'v', fontsize=12, color='red', weight='bold')
+ax1.text(w[0]+0.1, w[1]+0.1, 'w', fontsize=12, color='blue', weight='bold')
+
+# 设置坐标轴
+ax1.set_xlim(-3, 2)
+ax1.set_ylim(-1, 4)
+ax1.axhline(y=0, color='black', linewidth=0.8, alpha=0.5)
+ax1.axvline(x=0, color='black', linewidth=0.8, alpha=0.5)
+ax1.grid(True, alpha=0.3)
+ax1.set_aspect('equal')
+ax1.legend(loc='upper right')
+ax1.set_xlabel('x轴')
+ax1.set_ylabel('y轴')
+
+# ========== 图2：验证向量加法（三角形法则）==========
+ax2.set_title('向量加法验证: v + w = u', fontsize=14, pad=20)
+
+# 方法1：首尾相接（三角形法则）
+# 先画 v（从原点开始）
+ax2.quiver(0, 0, v[0], v[1],
+           angles='xy', scale_units='xy', scale=1,
+           color='red', width=0.01,
+           label=f'v = {v.tolist()}', alpha=0.8)
+
+# 再画 w（从 v 的终点开始）
+ax2.quiver(v[0], v[1], w[0], w[1],
+           angles='xy', scale_units='xy', scale=1,
+           color='blue', width=0.01,
+           label=f'w = {w.tolist()}', alpha=0.8)
+
+# 绘制和向量 u（从原点到终点）
+ax2.quiver(0, 0, u[0], u[1],
+           angles='xy', scale_units='xy', scale=1,
+           color='green', width=0.015,
+           label=f'u = v + w = {u.tolist()}', alpha=0.8)
+
+# 标记所有关键点
+points = {
+    '原点 O': (0, 0),
+    'v的终点 A': (v[0], v[1]),
+    'u的终点 B': (u[0], u[1])
+}
+
+for label, (x, y) in points.items():
+    ax2.scatter(x, y, s=100, zorder=5)
+    ax2.text(x + 0.1, y + 0.1, label, fontsize=10,
+             bbox=dict(boxstyle="round,pad=0.3", facecolor="yellow", alpha=0.7))
+
+# 连接点形成三角形
+ax2.plot([0, v[0]], [0, v[1]], 'r-', alpha=0.3)      # O到A
+ax2.plot([v[0], u[0]], [v[1], u[1]], 'b-', alpha=0.3)  # A到B
+ax2.plot([0, u[0]], [0, u[1]], 'g--', alpha=0.5)     # O到B（对角线）
+
+# 添加文字说明
+ax2.text(v[0]/2, v[1]/2 - 0.3, 'v', fontsize=11, color='red', ha='center')
+ax2.text(v[0] + w[0]/2, v[1] + w[1]/2 + 0.3, 'w', fontsize=11, color='blue', ha='center')
+ax2.text(u[0]/2 + 0.5, u[1]/2, 'u = v + w', fontsize=12, color='green', weight='bold',
+         bbox=dict(boxstyle="round,pad=0.3", facecolor="lightgreen", alpha=0.8))
+
+# 设置坐标轴
+ax2.set_xlim(-3, 2)
+ax2.set_ylim(-1, 4)
+ax2.axhline(y=0, color='black', linewidth=0.8, alpha=0.5)
+ax2.axvline(x=0, color='black', linewidth=0.8, alpha=0.5)
+ax2.grid(True, alpha=0.3)
+ax2.set_aspect('equal')
+ax2.legend(loc='upper right')
+ax2.set_xlabel('x轴')
+ax2.set_ylabel('y轴')
+
+plt.tight_layout()
+plt.show()
+
+# 验证计算
+print("\n=== 验证向量加法 ===")
+print(f"直接计算: v + w = {v} + {w} = {u}")
+print(f"几何验证: 从原点(0,0)到点{u} = {u}")
+print("✓ 两种方法结果一致！")
+
+print("\n=== 向量模长计算 ===")
+print(f"|v| = √({v[0]}² + {v[1]}²) = √({v[0]**2} + {v[1]**2}) = √{np.sum(v**2)} = {np.linalg.norm(v):.2f}")
+print(f"|w| = √({w[0]}² + {w[1]}²) = √({w[0]**2} + {w[1]**2}) = √{np.sum(w**2)} = {np.linalg.norm(w):.2f}")
+print(f"|u| = √({u[0]}² + {u[1]}²) = √({u[0]**2} + {u[1]**2}) = √{np.sum(u**2)} = {np.linalg.norm(u):.2f}")
+```
 ### 思考题
 * 为什么向量可以任意平移而不改变其本质？
+  
+答案：向量只有方向和大小的属性，不包含位置信息。平移后方向和大小不变，本质就不变。
 
+例子：
+```python
+# 向量 [3,2] 可以在不同位置
+从(0,0)到(3,2)    # 向量 [3,2]
+从(1,1)到(4,3)    # (4-1, 3-1) = [3,2]  ✓ 相同
+```
 * 在机器学习中，为什么用向量表示数据？
+```
+六大原因：
+1. 数学运算方便：可加、可乘、可标准化
+2. 几何直观：相似数据在空间中靠近
+3. 统一接口：图片、文本、音频都能向量化
+4. 工具丰富：可使用线性代数所有工具
+5. 降维可视化：高维数据可投影到2D/3D
+6. 神经网络支持：网络层本质是向量变换
+关键思想：向量是数据的"数学语言"。
+```
+* 如何用向量表示一张图片？
+  
+四层方法：
 
-如何用向量表示一张图片？
-
+① 基础：像素向量
+```python
+# 灰度图8x8 → 64维向量
+pixels = img.flatten()  # [p1, p2, ..., p64]
+```
+② 彩色：RGB拼接
+```python
+# 32x32 RGB → 3072维向量  
+vector = np.concatenate([R.flatten(), G.flatten(), B.flatten()])
+```
+③ 进阶：特征向量（HOG）
+```python
+# 提取边缘纹理特征（3780维）
+features = hog(img)  # 比原始像素更有意义
+```
+④ 高级：深度学习特征
+```python
+# CNN提取语义特征（512维）
+features = cnn_model(img)  # 鲁棒性强，适合分类搜索
+```
 ### 🚀 下一步学习建议
 * 运行代码：把上面的Python代码跑一遍
 
