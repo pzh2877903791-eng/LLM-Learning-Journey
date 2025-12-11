@@ -44,6 +44,7 @@
    - 模型校准
 
 ## 🛠️ 代码结构
+```
 probability-stats/
 ├── README.md # 本文件
 ├── 01-basic-concepts/ # 基础概念
@@ -58,3 +59,4 @@ probability-stats/
 └── projects/ # 实践项目
 ├── 01-llm_sampling/
 └── 02-model_calibration/
+```
